@@ -18,10 +18,14 @@ const experienceSchema = new mongoose.Schema<ExperienceType>({
   deployment: {
     status: {
       type: Boolean,
-      required: true,
+      default: true
     },
-    message : String,
-    statusColor: String
+    message : {
+      type: String,
+    },
+    statusColor: {
+      type: String,
+    }
   },
 
   company_Subtitle: {

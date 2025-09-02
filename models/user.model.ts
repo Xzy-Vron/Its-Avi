@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema<UserType>({
     required: true,
   },
   availability: {
-    messsage: String,
+    message: String,
     color: String,
   },
   userlocation: {
