@@ -13,27 +13,27 @@ export async function GET() {
       });
     }
 
-    const {
-      firstName,
-      lastName,
-      availability,
-      userlocation,
-      technology_skills,
-      currently,
-    } = user;
+    const sortedExperiences = user.experiences.sort((a, b) => {
+      
+      if (a.year === "Present") return -1;
+      if (b.year === "Present") return 1;
+
+      return Number(b.year) - Number(a.year);
+    });
+
+    if (!sortedExperiences) {
+      return Response.json({
+        success: false,
+        message: "Experiences not found",
+      });
+    }
 
     return Response.json({
       success: true,
-      message: "User found successfully",
-      name: {
-        firstName,
-        lastName,
-      },
-      availability,
-      userlocation,
-      technology_skills,
-      currently,
+      message: "Experiences found successfully",
+      sortedExperiences,
     });
+
   } catch (error) {
     return Response.json({
       success: false,
