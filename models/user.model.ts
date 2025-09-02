@@ -3,7 +3,11 @@ import { UserType } from "@/types/User";
 import { experienceSchema } from "./experience.model";
 
 const userSchema = new mongoose.Schema<UserType>({
-  name: {
+  firstName: {
+    type: String,
+    required: true,
+  },
+  lastName: {
     type: String,
     required: true,
   },

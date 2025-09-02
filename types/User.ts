@@ -3,7 +3,8 @@ import { Document, Types } from "mongoose"
 import { BlogType } from "./Blog"
 
 export interface UserType extends Document {
-  name: string
+  firstName: string
+  lastName: string
   email: string
   availability?: {
     messsage: string

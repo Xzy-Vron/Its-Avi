@@ -1,7 +1,8 @@
 
 
 export const userData = {
-  name: "Avinash Ganore",
+  firstName: "Avinash",
+  lastName: "Ganore",
   email: "avinashganore@gmail.com",
   availability: {
     message: "Available for Work",
