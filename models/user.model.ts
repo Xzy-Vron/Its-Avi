@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { UserType } from "@/types/User";
-import { experienceSchema } from "./experience.models";
+import { experienceSchema } from "./experience.model";
 
 const userSchema = new mongoose.Schema<UserType>({
   name: {
@@ -48,6 +48,12 @@ const userSchema = new mongoose.Schema<UserType>({
         type: String,
         required: true,
       },
+    },
+  ],
+  blogs: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Blog",
     },
   ],
 });

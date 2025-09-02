@@ -1,5 +1,6 @@
 import { ExperienceType } from "./Experience"
-import { Document } from "mongoose"
+import { Document, Types } from "mongoose"
+import { BlogType } from "./Blog"
 
 export interface UserType extends Document {
   name: string
@@ -21,7 +22,8 @@ export interface UserType extends Document {
       handle: string
       url: string
     }
-  ]
+  ],
+  blogs: Types.ObjectId[] | BlogType[]
 }
 
 
