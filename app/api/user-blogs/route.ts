@@ -65,6 +65,7 @@ export async function GET(req: Request) {
          return Response.json({
            success: true,
            message: "Blogs found successfully for blogs page",
+           blogs
          },{
             status : 200
            })
