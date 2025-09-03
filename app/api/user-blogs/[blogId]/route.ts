@@ -8,7 +8,7 @@ export async function GET(
 
   await dbconnect();
 
-  const { blogId } = await params;
+  const { blogId } = params;
 
   try {
     const blog = await Blog.findById(blogId);

@@ -37,7 +37,7 @@ export function IntroSection({
             </p>
 
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"> {/* text-foreground*/}
+              <div className="flex items-center animate-pulse gap-2"> {/* text-foreground*/}
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                 Open for Internships
               </div>

@@ -6,7 +6,7 @@ import axios from "axios"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 
-interface Blog {
+interface Blogs {
   _id: string
   title: string
   subtitle: string
@@ -14,12 +14,12 @@ interface Blog {
   readTime: string
 }
 
-export default function page() {
+export default function Page() {
   // const [isDark, setIsDark] = useState(true)
   const [activeSection, setActiveSection] = useState("")
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
-  const [data, setData] = useState<Blog[] | null>(null)
+  const [data, setData] = useState<Blogs[] | null>(null)
   const [loading, setLoading] = useState(true)
 
     useEffect(() => {

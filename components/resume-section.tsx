@@ -18,14 +18,14 @@ export function ResumeSection({
         <h2 className="text-4xl font-light">Resume</h2>
 
         <div className="flex flex-col items-center">
-          <article className="group w-10/12 p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer">
-            <Image className={`rounded-sm brightness-50`} width={1000} height={1000} src="/Resume.jpg" alt="Resume" />
+          <article className="group w-8/10 p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer">
+            <Image className={`rounded-sm brightness-65`} width={1000} height={1000} src="/Resume.jpg" alt="Resume" />
           </article>
           <div className="col-span-full w-full border-b border-border/50 hover:border-border flex items-center justify-end">
             <Link
               href="/Resume.pdf"
               download
-              className="group inline-flex items-center gap-2 py-4 text-sm text-foreground  animate-pulse hover:text-foreground transition-colors duration-300"
+              className="group inline-flex items-center gap-2 py-4 text-sm text-foreground animate-pulse hover:text-foreground transition-colors duration-300"
               aria-label="View full resume"
             >
               <span>View Full Resume</span>

@@ -1,17 +1,53 @@
 "use client"
 
+import PageLoader from "@/components/page-loader"
+import { formatBlogDate } from "@/lib/format-blog-date"
+import axios from "axios"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useParams } from "next/navigation"
+import { use, useEffect, useRef, useState } from "react"
 
-export default function Home() {
-  const [isDark, setIsDark] = useState(true)
+interface Blog {
+  _id: string
+  title: string
+  subtitle: string
+  content: string
+  createdAt: string
+  readTime: string
+}
+
+
+export default function Page() {
+
+  const { id } = useParams();
+  // const [isDark, setIsDark] = useState(true)
   const [activeSection, setActiveSection] = useState("")
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+  
+  const [data, setData] = useState<Blog | null>(null);
+  const [loading, setloading] = useState(true);
 
   useEffect(() => {
-    document.documentElement.classList.toggle("dark", isDark)
-  }, [isDark])
+    const fetchBlog = async () => {
+      try {
+        const response = await axios.get("/api/user-blogs/"+id);
+        const { blog } = response.data;
+        setData(blog);
+      } catch (error) {
+        console.error("Error fetching blogs:", error);
+      }finally {
+        setloading(false)
+      }
+    }
+    fetchBlog();
+  }, []);
 
+  // useEffect(() => {
+  //   document.documentElement.classList.toggle("dark", isDark)
+  // }, [isDark])
+
+  
+  
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -24,44 +60,39 @@ export default function Home() {
       },
       { threshold: 0.3, rootMargin: "0px 0px -20% 0px" },
     )
-
+    
     sectionsRef.current.forEach((section) => {
       if (section) observer.observe(section)
-    })
-
+      })
+    
     return () => observer.disconnect()
-  }, [])
-
-  const toggleTheme = () => {
-    setIsDark(!isDark)
-  }
-
-  const post = {
-    title: "The Future of Web Development",
-    excerpt: "Exploring how AI and automation are reshaping the way we build for the web.",
-    date: "Dec 2024",
-    readTime: "5 min",
-  }
-
+  }, [loading])
+  
+  // const toggleTheme = () => {
+    //   setIsDark(!isDark)
+    // }
+    if(loading) return <PageLoader />
+    if(!data) return <PageLoader />
+    
   return (
     <main className="max-w-4xl mx-auto px-8 lg:px-16">
       <section id="thoughts" ref={(el) => {sectionsRef.current[2] = el}} className="min-h-screen py-32 opacity-0">
         <div className="space-y-16">
-          <h2 className="text-4xl font-light">Recent Thoughts</h2>
+          <h2 className="text-4xl font-light">{data.title}</h2>
 
           <div className="gap-8">
             <article className="group p-8 transition-all duration-500 hover:shadow-lg">
               <div className="space-y-4">
                 <div className="flex items-center justify-between text-xs text-muted-foreground font-mono">
-                  <span>{post.date}</span>
-                  <span>{post.readTime}</span>
+                  <span>{formatBlogDate(data.createdAt)}</span>
+                  <span>{data.readTime}</span>
                 </div>
 
                 <h3 className="text-xl font-medium group-hover:text-muted-foreground transition-colors duration-300">
-                  {post.title}
+                  {data.subtitle}
                 </h3>
 
-                <p className="text-muted-foreground leading-relaxed">{post.excerpt}</p>
+                <p className="text-muted-foreground leading-relaxed">{data.content}</p>
               </div>
             </article>
           </div>

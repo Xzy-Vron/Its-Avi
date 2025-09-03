@@ -115,9 +115,9 @@ export function ExperienceSection({
                 <p className="text-muted-foreground leading-relaxed max-w-lg">{experience.description}</p>
                 {!experience.isDeployed.status && (
                           <>
-                            <div className="flex items-center justify-start pt-1 gap-2">
+                            <div className="flex items-center animate-pulse justify-start pt-1 gap-2">
                               <div className={`w-2 h-2 ${experience.isDeployed.statusColor} rounded-full animate-pulse`}></div>
-                              <span className="text-xs text-muted-foreground">
+                              <span className="text-xs text-foreground">
                                 {experience.isDeployed.message}
                               </span>
                             </div>
