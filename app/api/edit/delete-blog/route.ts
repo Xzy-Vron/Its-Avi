@@ -14,7 +14,7 @@ export async function DELETE(req: NextRequest) {
   try {
     await dbconnect();
 
-    const id = "68b7591930c94f350c7ded04"; //👉 Enter your blog Id here to delete the blog
+    const id = ""; //👉 Enter your blog Id here to delete the blog
 
     if (!id) return Response.json({ message: "Id not provided" }, { status: 404 });
 
