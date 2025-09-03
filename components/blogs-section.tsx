@@ -27,7 +27,6 @@ export function BlogsSection({
       try {
         const response = await axios.get("/api/user-blogs");
         const data = response.data.blogs;
-        console.log(data);
         setData(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
@@ -40,7 +39,7 @@ export function BlogsSection({
   return (
     <section id="thoughts" ref={sectionRef} className="min-h-screen py-32 opacity-0">
       <div className="space-y-16">
-        <h2 className="text-4xl font-light">Recent Thoughts</h2>
+        <h2 className="text-4xl font-light">Recent Blogs</h2>
 
         <div className="grid lg:grid-cols-2 gap-8">
           {data.map((blog, index) => (
