@@ -37,6 +37,7 @@ export async function GET(
     return Response.json({ 
         success: false,
         message: "Error fetching blog", 
+        error
       }, { 
         status: 500 
       });

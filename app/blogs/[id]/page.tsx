@@ -5,7 +5,7 @@ import { formatBlogDate } from "@/lib/format-blog-date";
 import axios from "axios";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface Blog {
   _id: string;
@@ -18,7 +18,7 @@ interface Blog {
 
 export default function Page() {
   const { id } = useParams();
-  // const [isDark, setIsDark] = useState(true)
+
   const [activeSection, setActiveSection] = useState("");
   const sectionsRef = useRef<(HTMLElement | null)[]>([]);
 
@@ -28,7 +28,7 @@ export default function Page() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const response = await axios.get("/api/user-blogs/" + id);
+        const response = await axios.get(`/api/user-blogs/${id}`);
         const { blog } = response.data;
         setData(blog);
       } catch (error) {
@@ -40,9 +40,7 @@ export default function Page() {
     fetchBlog();
   }, []);
 
-  // useEffect(() => {
-  //   document.documentElement.classList.toggle("dark", isDark)
-  // }, [isDark])
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -64,9 +62,7 @@ export default function Page() {
     return () => observer.disconnect();
   }, [loading]);
 
-  // const toggleTheme = () => {
-  //   setIsDark(!isDark)
-  // }
+
   if (loading) return <PageLoader />;
   if (!data) return <PageLoader />;
 
@@ -127,7 +123,6 @@ export default function Page() {
               </Link>
             </div>
           </div>
-          {/* End of change */}
         </div>
       </section>
     </main>

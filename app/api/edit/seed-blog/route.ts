@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import dbconnect from "@/lib/db-connect";
 import Blog from "@/models/blog.model";
 import User from "@/models/user.model";
@@ -28,12 +28,16 @@ export async function POST(req: NextRequest) {
     await user.save();
 
     return Response.json({
+      success: true,
       message: "Blogs seeded successfully",
       blogs: await Blog.find(),
     });
 
-  } catch (error: any) {
+  } catch (error) {
 
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json({
+      success: false,
+      message: "Something went wrong while seeding blog",
+     }, { status: 500 });
   }
 }

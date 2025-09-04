@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import dbconnect from "@/lib/db-connect";
 import Blog from "@/models/blog.model";
 import User from "@/models/user.model";
@@ -27,11 +27,15 @@ export async function DELETE(req: NextRequest) {
     );
 
     return Response.json({
+      success: true,
       message: "Blog deleted successfully",
     });
 
-  } catch (error: any) {
+  } catch (error) {
 
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json({ 
+      success: false,
+      message: "Something went wrong while deleting blog",
+    }, { status: 500 });
   }
 }
