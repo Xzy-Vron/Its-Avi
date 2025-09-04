@@ -6,10 +6,13 @@ import { ExperienceSection } from "@/components/experience-section"
 import { BlogsSection } from "@/components/blogs-section"
 import { ResumeSection } from "@/components/resume-section"
 import { ConnectSection } from "@/components/connect-section"
+import PageLoader from "@/components/page-loader"
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
+
+  const [loading, setLoading] = useState(true)
 
   const sectionIds = useMemo(() => ["intro", "work", "thoughts", "Resume", "connect"], [])
 
@@ -40,11 +43,12 @@ export default function Home() {
     })
 
     return () => observer.disconnect()
-  }, [])
+  }, [loading])
 
   const onNavClick = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
   }, [])
+
 
   return (
     <div className="min-h-screen bg-background text-foreground relative">
@@ -64,7 +68,7 @@ export default function Home() {
       </nav>
 
       <main className="max-w-4xl mx-auto px-8 lg:px-16">
-        <IntroSection sectionRef={sectionRefCallbacks[0]} />
+        <IntroSection setLoading={setLoading} sectionRef={sectionRefCallbacks[0]} />
         <ExperienceSection sectionRef={sectionRefCallbacks[1]} />
         <BlogsSection sectionRef={sectionRefCallbacks[2]} />
         <ResumeSection sectionRef={sectionRefCallbacks[3]} />

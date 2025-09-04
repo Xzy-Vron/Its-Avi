@@ -25,14 +25,16 @@ export async function GET() {
     return Response.json({
       success: true,
       message: "User found successfully",
-      name: {
-        firstName,
-        lastName,
+      intro: {
+        name: {
+          firstName,
+          lastName,
+        },
+        availability,
+        userlocation,
+        technology_skills,
+        currently,
       },
-      availability,
-      userlocation,
-      technology_skills,
-      currently,
     });
   } catch (error) {
     return Response.json({

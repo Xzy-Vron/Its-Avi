@@ -1,10 +1,53 @@
 "use client";
 
+import axios from "axios";
+import { useEffect, useState } from "react";
+import PageLoader from "./page-loader";
+
+interface IntroData {
+  name: {
+    firstName: string
+    lastName: string
+  }
+  availability: {
+    message: string
+    color: string
+  }
+  userlocation: string
+  technology_skills: [string]
+  currently: {
+    role: string
+    organisation: string
+  }
+}
+
 export function IntroSection({
-  sectionRef,
+  sectionRef, setLoading
 }: {
   sectionRef: (el: HTMLElement | null) => void;
+  setLoading: (loading: boolean) => void
 }) {
+
+  const [ data, setData ] = useState<IntroData | null>(null)
+
+  useEffect(() => {
+    const fetchIntro = async () => {
+      try {
+        const response = await axios.get("/api/user-intro");
+        const { intro } = response.data;
+        setData(intro);
+      } catch (error) {
+        console.error("Error fetching intro:", error);
+      }finally {
+        setLoading(false)
+      }
+    }
+    fetchIntro();
+  }, [])
+
+  if (!data) return <PageLoader />
+
+  
   return (
     <header
       id="intro"
@@ -18,9 +61,9 @@ export function IntroSection({
               PORTFOLIO / 2025
             </div>
             <h1 className="text-6xl lg:text-7xl font-light tracking-tight">
-              Avinash
+              {data.name.firstName}
               <br />
-              <span className="text-muted-foreground">Ganore</span>
+              <span className="text-muted-foreground">{data.name.lastName}</span>
             </h1>
           </div>
 
@@ -38,8 +81,8 @@ export function IntroSection({
 
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center animate-pulse gap-2"> {/* text-foreground*/}
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                Open for Internships
+                <div className={`w-2 h-2 ${data.availability.color} rounded-full animate-pulse`}></div>
+                {data.availability.message}
               </div>
               {/* Uncomment this div classname and svg if you want only location */}
               <div>
@@ -56,7 +99,7 @@ export function IntroSection({
                   <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                   <circle cx="12" cy="10" r="3" />
                 </svg> */}
-                Pune, Maharashtra
+                {data.userlocation}
               </div>
             </div>
           </div>
@@ -69,10 +112,10 @@ export function IntroSection({
             </div>
             <div className="space-y-2">
               <div className="text-foreground">
-                Electronics and Telecommunications Engineeing Student
+                {data.currently.role}
               </div>
               <div className="text-muted-foreground">
-                @ Savitribai Phule Pune University
+                @ {data.currently.organisation}
               </div>
               <div className="text-xs text-muted-foreground">
                 2023 — Present
@@ -83,18 +126,7 @@ export function IntroSection({
           <div className="space-y-4">
             <div className="text-sm text-muted-foreground font-mono">FOCUS</div>
             <div className="flex flex-wrap gap-2">
-              {[
-                "React",
-                "TypeScript",
-                "Next.js",
-                "node.js",
-                "MERN Stack",
-                "JavaScript",
-                "Java",
-                "MongoDB",
-                "GSAP",
-                "Framer",
-              ].map((skill) => (
+              {data.technology_skills.map((skill) => (
                 <span
                   key={skill}
                   className="px-3 py-1 text-xs border border-border rounded-full hover:border-muted-foreground/50 transition-colors duration-300"
