@@ -12,7 +12,10 @@ export default function Home() {
   const [activeSection, setActiveSection] = useState("")
   const sectionsRef = useRef<(HTMLElement | null)[]>([])
 
-  const [loading, setLoading] = useState(true)
+  const [introLoading, setIntroLoading] = useState(true)
+  const [experienceLoading, setExperienceLoading] = useState(true)
+  const [blogsLoading, setBlogsLoading] = useState(true)
+  const [connectLoading, setConnectLoading] = useState(true)
 
   const sectionIds = useMemo(() => ["intro", "work", "thoughts", "Resume", "connect"], [])
 
@@ -43,7 +46,7 @@ export default function Home() {
     })
 
     return () => observer.disconnect()
-  }, [loading])
+  }, [introLoading, experienceLoading, blogsLoading, connectLoading,])
 
   const onNavClick = useCallback((id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
@@ -68,8 +71,8 @@ export default function Home() {
       </nav>
 
       <main className="max-w-4xl mx-auto px-8 lg:px-16">
-        <IntroSection setLoading={setLoading} sectionRef={sectionRefCallbacks[0]} />
-        <ExperienceSection sectionRef={sectionRefCallbacks[1]} />
+        <IntroSection setLoading={setIntroLoading} sectionRef={sectionRefCallbacks[0]} />
+        <ExperienceSection setLoading={setExperienceLoading} sectionRef={sectionRefCallbacks[1]} />
         <BlogsSection sectionRef={sectionRefCallbacks[2]} />
         <ResumeSection sectionRef={sectionRefCallbacks[3]} />
         <ConnectSection sectionRef={sectionRefCallbacks[4]} />
