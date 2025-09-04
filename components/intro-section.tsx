@@ -3,6 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import PageLoader from "./page-loader";
+import { set } from "mongoose";
 
 interface IntroData {
   name: {
@@ -43,7 +44,7 @@ export function IntroSection({
       }
     }
     fetchIntro();
-  }, [])
+  }, [setLoading])
 
   if (!data) return <PageLoader />
 
