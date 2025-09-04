@@ -1,36 +1,9 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 👋 Hey there! I'm Avi<br>
+<br>I'm a 19-year-old software engineer-in-progress 🚀<br>Second-year engineering student 🧑‍💻 | Part-time web developer | Full-time bug hunter 🐞<br><br>🚧 What I'm Up To<br><br>🧠 Diving into **Next js** <br>💬 Currently building **Whispr**<br>🎨 Improving my web design skills — trying to make UIs that look less like 2005 <br>
+<br>
 
-## Getting Started
+[![My Skills](https://skillicons.dev/icons?i=html,css,javascript,react,nodejs,bootstrap,express,git,github,gmail,vercel,java,mongodb,mysql,nextjs,notion,npm,postman,redux,tailwind,vite,vscode,windows,materialui&perline=11)](https://skillicons.dev)
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# 📊 GitHub Stats:
+![](https://github-readme-stats.vercel.app/api?username=Xzy-Vron&theme=graywhite&hide_border=false&include_all_commits=true&count_private=true)<br/>
