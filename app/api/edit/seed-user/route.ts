@@ -3,7 +3,7 @@
 // This Might affect the Home Page Blog section
 
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import User from "@/models/user.model";
 import { userData } from "./user-information";
 import dbconnect from "@/lib/db-connect";

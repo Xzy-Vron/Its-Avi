@@ -1,5 +1,4 @@
 import React from 'react'
-import { Ellipsis} from "lucide-react"
 export default function PageLoader() {
   return (
     // <main
