@@ -1,19 +1,45 @@
 "use client"
 
+import axios from "axios";
 import Link from "next/link"
+import { useEffect, useState } from "react";
+import PageLoader from "./page-loader";
+
+interface Connect {
+  email: string
+  socials: {
+    name: string
+    handle: string
+    url: string
+  }[]
+}
 
 export function ConnectSection({
   sectionRef,
+  setLoading
 }: {
   sectionRef: (el: HTMLElement | null) => void
+  setLoading: (loading: boolean) => void
 }) {
+  const [data, setData] = useState<Connect | null>(null);
 
-  const handles =[
-    { name: "GitHub", handle: "@Xzy-Vron", url: "https://github.com/Xzy-Vron" },
-    { name: "Twitter", handle: "@XzyVron", url: "https://x.com/XzyVron" },
-    { name: "LinkedIn", handle: "avinash-ganore", url: "https://www.linkedin.com/in/avinash-ganore/" },
-    { name: "WhatsApp", handle: "+91 9284652931", url: "https://wa.me/9284652931" },
-  ]
+  useEffect(() => {
+    const fetchConnect = async () => {
+      try {
+        const response = await axios.get("/api/user-connect");
+        const { connect } = response.data;
+        setData(connect);
+      } catch (error) {
+        console.error("Error fetching connect:", error);
+      }finally {
+        setLoading(false)
+      }
+    }
+    fetchConnect();
+  }, [])
+
+  if (!data) return <PageLoader />
+  
   return (
     <section id="connect" ref={sectionRef} className="py-32 opacity-0">
       <div className="grid lg:grid-cols-2 gap-16">
@@ -27,10 +53,10 @@ export function ConnectSection({
 
             <div className="space-y-4">
               <Link
-                href="mailto:avinashganore@gmail.com"
+                href={`mailto:${data.email}`}
                 className="group flex items-center gap-3 text-foreground hover:text-muted-foreground transition-colors duration-300"
               >
-                <span className="text-lg">avinashganore@gmail.com</span>
+                <span className="text-lg">{data.email}</span>
                 <svg
                   className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300"
                   fill="none"
@@ -48,7 +74,7 @@ export function ConnectSection({
           <div className="text-sm text-muted-foreground font-mono">ELSEWHERE</div>
 
           <div className="grid grid-cols-2 gap-4">
-            {handles.map((social) => (
+            {data.socials.map((social) => (
               <Link
                 key={social.name}
                 href={social.url}

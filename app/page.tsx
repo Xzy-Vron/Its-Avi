@@ -15,7 +15,6 @@ export default function Home() {
   const [introLoading, setIntroLoading] = useState(true)
   const [experienceLoading, setExperienceLoading] = useState(true)
   const [blogsLoading, setBlogsLoading] = useState(true)
-  const [resumeLoading, setResumeLoading] = useState(true)
   const [connectLoading, setConnectLoading] = useState(true)
 
   const sectionIds = useMemo(() => ["intro", "work", "thoughts", "Resume", "connect"], [])
@@ -75,8 +74,8 @@ export default function Home() {
         <IntroSection setLoading={setIntroLoading} sectionRef={sectionRefCallbacks[0]} />
         <ExperienceSection setLoading={setExperienceLoading} sectionRef={sectionRefCallbacks[1]} />
         <BlogsSection setLoading={setBlogsLoading} sectionRef={sectionRefCallbacks[2]} />
-        <ResumeSection sectionRef={sectionRefCallbacks[3]} />
-        <ConnectSection sectionRef={sectionRefCallbacks[4]} />
+        <ResumeSection  sectionRef={sectionRefCallbacks[3]} />
+        <ConnectSection setLoading={setConnectLoading} sectionRef={sectionRefCallbacks[4]} />
       </main>
 
       <div className="fixed bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none"></div>
