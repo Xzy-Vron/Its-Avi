@@ -4,6 +4,7 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { formatBlogDate } from "@/lib/format-blog-date"
+import PageLoader from "./page-loader"
 
 
 interface Blog {
@@ -16,11 +17,13 @@ interface Blog {
 
 export function BlogsSection({
   sectionRef,
+  setLoading
 }: {
   sectionRef: (el: HTMLElement | null) => void
+  setLoading: (loading: boolean) => void
 }) {
 
-  const [data, setData] = useState<Blog[]>([]);
+  const [data, setData] = useState<Blog[] | null>(null);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -30,10 +33,14 @@ export function BlogsSection({
         setData(data);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      }finally {
+        setLoading(false)
       }
     }
     fetchBlogs();
   }, []);
+
+  if (!data) return <PageLoader />
 
 
   return (

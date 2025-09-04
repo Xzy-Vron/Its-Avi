@@ -15,6 +15,7 @@ export default function Home() {
   const [introLoading, setIntroLoading] = useState(true)
   const [experienceLoading, setExperienceLoading] = useState(true)
   const [blogsLoading, setBlogsLoading] = useState(true)
+  const [resumeLoading, setResumeLoading] = useState(true)
   const [connectLoading, setConnectLoading] = useState(true)
 
   const sectionIds = useMemo(() => ["intro", "work", "thoughts", "Resume", "connect"], [])
@@ -73,7 +74,7 @@ export default function Home() {
       <main className="max-w-4xl mx-auto px-8 lg:px-16">
         <IntroSection setLoading={setIntroLoading} sectionRef={sectionRefCallbacks[0]} />
         <ExperienceSection setLoading={setExperienceLoading} sectionRef={sectionRefCallbacks[1]} />
-        <BlogsSection sectionRef={sectionRefCallbacks[2]} />
+        <BlogsSection setLoading={setBlogsLoading} sectionRef={sectionRefCallbacks[2]} />
         <ResumeSection sectionRef={sectionRefCallbacks[3]} />
         <ConnectSection sectionRef={sectionRefCallbacks[4]} />
       </main>
