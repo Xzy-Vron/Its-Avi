@@ -1,10 +1,11 @@
 import dbconnect from "@/lib/db-connect";
 import Blog from "@/models/blog.model";
+import { NextRequest } from "next/server";
 export async function GET(
-  req: Request,
-  context: { params: { blogId: string } }
+  req: NextRequest,
+  context: { params: Promise<{ blogId: string }> }
 ) {
-  const { blogId } = context.params;
+  const { blogId } = await context.params;
 
   await dbconnect();
 
